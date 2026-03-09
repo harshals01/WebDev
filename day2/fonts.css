@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1{
+
+    font-family: 'Poppins', sans-serif;
+}
+
+h2{
+
+    text-transform: capitalize;
+}
+p.color{
+
+       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 23px;
+    color: red;
+    font-weight: 500;
+}
+
+.shadow{
+
+    font-size: 35px;
+    text-shadow: 4px 2px 5px;
+    color: black;
+
+}
+
+.shadow-box{
+
+    box-shadow: 4px 2px 4px 4px ;
+    padding: 20px;
+    color: pink;
+    background-color: whitesmoke;
+}
+
+.gradient{
+
+    background: linear-gradient(to left, red, blue
+    );
+    padding: 40px;
+    color: white;
+    text-align: center;
+}
+p.margin{
+
+    margin top: : 40px;
+    margin 
+}

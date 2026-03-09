@@ -1,0 +1,60 @@
+.box1{
+
+    border: 20px;
+    padding: 20px;
+    margin:20px;
+    box-shadow: 20px;
+    border: 2px solid black;
+
+    text-align: center;
+    
+}
+
+a{
+
+    margin: 10px;
+    font-size: 20px;
+    box-shadow: 2px 2px 2px 2px;
+    text-align: center ;
+
+
+}
+#gallery .imggrid img{
+    width: 20px;
+    height: 20px;
+}
+.about-container{
+    display: flex;
+    gap: 20px;
+    max-width: 70%;
+    margin: auto;
+}
+.lastbox{
+    display: flex;
+}
+
+h2{
+
+    text-align: center;
+    text-decoration: underline;
+    font-size: 40px;
+}
+
+.imggrid{
+
+    padding: 70px;
+    border: 90px;
+    margin: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    
+}
+
+.lastbox{
+
+    
+    padding: 20px;
+    border: 2px solid black;
+
+}
