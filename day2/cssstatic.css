@@ -1,6 +1,8 @@
 .box1{
 
-    border: 20px;
+    position: sticky;
+    top: 0;
+    background-color: beige;
     padding: 20px;
     margin:20px;
     box-shadow: 20px;
@@ -10,19 +12,27 @@
     
 }
 
+ @media screen and (max-width: 300) {
+
+.bannerimg
+
+ }
+
+
 a{
 
     margin: 10px;
     font-size: 20px;
-    box-shadow: 2px 2px 2px 2px;
+    box-shadow: 2px 2px 2px ;
     text-align: center ;
-
-
 }
+
 #gallery .imggrid img{
-    width: 20px;
-    height: 20px;
+    width: 400;
+    height: 300;
+     object-fit: cover;
 }
+
 .about-container{
     display: flex;
     gap: 20px;
@@ -30,7 +40,11 @@ a{
     margin: auto;
 }
 .lastbox{
-    display: flex;
+        display: flex;
+    flex-direction: row;
+    align-items: center;
+     padding: 20px;
+    border: 2px solid black;
 }
 
 h2{
@@ -42,19 +56,9 @@ h2{
 
 .imggrid{
 
-    padding: 70px;
-    border: 90px;
-    margin: 40px;
+    padding: 40px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    gap: 10px;
     
-}
-
-.lastbox{
-
-    
-    padding: 20px;
-    border: 2px solid black;
-
 }
