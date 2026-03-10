@@ -9,8 +9,8 @@
 <body>
 
     <!--navbar-->
-    <div class="box1">
-    <header id="Home">
+   
+    <header id="Home" class="box1" >
     <nav>
         <a href="#Home">Home</a>
         <a href="#about">About</a>
@@ -18,12 +18,12 @@
         <a href="#contactus">Contact Us</a>
     </nav>
     </header>
-    </div>
+   
     
     <!-- img section -->
-     <section style="text-align: center;">
+     <section class="bannerimg" >
     
-    <img src="mountain.png" alt="" width="1500px" height="300px" >
+    <img src="banner.avif" alt="banner" width="1500" height="300" >
     
     
     </section>
@@ -36,24 +36,26 @@
             
             <img  src="mountain.png" alt="Image1" >
             
-            <p style="text-align: right;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. At laudantium doloremque mollitia atque odio ab perferendis, praesentium, vero assumenda incidunt repudiandae. Voluptas fugit tenetur officia deserunt nulla animi quam sint asperiores, nesciunt vero accusamus molestiae, ipsa magnam reprehenderit. Consectetur placeat inventore at quas, aliquam magni.
+            <p >Lorem ipsum dolor sit, amet consectetur adipisicing elit. At laudantium doloremque mollitia atque odio ab perferendis, 
+                praesentium, vero assumenda incidunt repudiandae. Voluptas fugit tenetur officia deserunt nulla animi quam sint asperiores, 
+                nesciunt vero accusamus molestiae, ipsa magnam reprehenderit. Consectetur placeat inventore at quas, aliquam magni.
             </p>   
         </div>
     </section>
 
     <!--gallery-->
-    <section id="gallery">
+   
 
     <h2>Gallery</h2>
 
-    <section class="imggrid">
+    <section id="gallery" class="imggrid">
         <img src="1.jpg" alt="img1" title="Image1">
         <img src="2.jpg" alt="img2" title="Image2">
         <img src="3.jpg" alt="img3" title="Image3">
         <img src="4.png" alt="img4" title="Image4">
         <img src="5.png" alt="img5" title="Image5">
         <img src="6.png" alt="img6" title="Image6">
-    </section>
+   
     </section>
 
     <!--contact us-->
@@ -64,14 +66,14 @@
 
     <div class="lastbox" style="text-align: left;">
 
-    <img src="logo.png" alt="companylogo" height="300px" width="500px">
+    <img src="logo.png" alt="companylogo" height="300" width="500">
    
 
     <div style="text-align: right;">
         <form action="">
 
         <label>Name</label>
-        <input type="text">
+        <input type="text" id="fname" name="fname" placeholder="Jane">
 
         <label>Last Name</label>
         <input type="text">
@@ -83,7 +85,10 @@
         <input type="text" >
 
          <label>Message</label>
-         <textarea name="Message">type your Message</textarea>
+         <textarea name="Message" placeholder="type your Message"></textarea>
+
+         
+        <button type="submit">Send Message</button>
         
 
 
@@ -94,6 +99,7 @@
 
     <footer class="box1">
 
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
     </footer>
     
 </body>
