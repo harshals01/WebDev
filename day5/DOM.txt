@@ -1,0 +1,22 @@
+HTML loading and Parsing
+        ||
+        ||
+CSS loading and Parsing (CSSOM)
+        ||
+    DOM+CSSOM
+
+// getElementByID():
+
+Syntax:   document.getElementById( element_ID )
+
+
+
+// querySelectorAll(): gives collection of element's child elements that match the specified 
+                       CSS selectors as a list
+
+Syntax:   element.querySelectorAll(selectors)
+
+element.addEventListener
+
+ 
+
