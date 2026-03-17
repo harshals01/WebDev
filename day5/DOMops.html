@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOM getElementByID() method</title>
+
+
+    <script>
+
+        function geeks() {
+
+            var demo = document.getElementById("geeks");
+            demo.style.color = "green";
+
+
+        }
+        function content(){
+
+            var demo = document.getElementById("content");
+            demo.innerHTML = "Welcome to the Webpage";
+        }
+    </script>
+</head>
+
+<body style="text-align: center;">
+
+    <h1 id="geeks"> Heading 1</h1>
+    <h2> DOM getElementByID method use</h2>
+    <h3 id="content">the intially passed content</h3>
+
+    <input type="button" onclick="geeks()" value="click here to change color">
+    <input type="button" onclick="content()" value="click here to change content">
+
+
+
+
+</body>
+
+</html>
