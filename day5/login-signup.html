@@ -6,13 +6,16 @@
 <title>Sign In</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="loginpagedesign.css">
-</head>
-<body>
 
     <script src="login-js.js"></script>
 
+</head>
+<body>
+
+
 <!-- RIGHT PANEL -->
 <div class="right-panel">
+  
   <div class="form-card">
 
     <!-- Tabs -->
@@ -29,6 +32,7 @@
       <div class="field">
         <label for="login-email">Email</label>
         <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email">
+        <small class="error" id="error-login-email"></small>
       </div>
 
       <div class="field">
@@ -36,12 +40,13 @@
         <div class="password-wrapper">
           <input type="password" id="login-pw" placeholder="••••••••" autocomplete="current-password">
           <button class="toggle-pw" type="button" onclick="togglePw('login-pw', this)">Show</button>
+                  <small class="error" id="error-login-pw"></small>
         </div>
       </div>
 
       <a href="#" class="forgot">Forgot password?</a>
 
-      <button class="submit-btn" type="button">Sign In</button>
+      <button class="submit-btn" type="button" onclick="handleLogin()">Sign In </button>
 
     </div>
 
@@ -53,28 +58,32 @@
       <div class="row-2">
         <div class="field">
           <label for="first-name">First Name</label>
-          <input type="text" id="first-name" placeholder="Jane" autocomplete="given-name">
+          <input type="text" id="first-name" placeholder="Jane" autocomplete="given-name" >
+          <small class="error" id="error-first-name"></small>
         </div>
         <div class="field">
           <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" placeholder="Doe" autocomplete="family-name">
+          <input type="text" id="last-name" placeholder="Doe" autocomplete="family-name" >
+            <small class="error" id="error-last-name"></small>
         </div>
       </div>
 
       <div class="field">
         <label for="signup-email">Email</label>
-        <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email">
+        <small class="error" id="error-signup-email"></small>
+        <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" >
       </div>
 
       <div class="field">
         <label for="signup-pw">Password</label>
         <div class="password-wrapper">
-          <input type="password" id="signup-pw" placeholder="At least 8 characters" autocomplete="new-password">
+          <input type="password" id="signup-pw" placeholder="At least 8 characters" autocomplete="new-password" >
           <button class="toggle-pw" type="button" onclick="togglePw('signup-pw', this)">Show</button>
+            <small class="error" id="error-signup-pw"></small>
         </div>
       </div>
 
-      <button class="submit-btn" type="button" style="margin-top: 0.5rem;">Create Account</button>
+      <button class="submit-btn" type="button" style="margin-top: 0.5rem;" onclick="handleSignup()">Create Account</button>
 
  
 
