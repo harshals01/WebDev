@@ -9,24 +9,24 @@ async function loadTableData() {
             row.setAttribute('data-id', item.id);
             row.setAttribute('data-fields', JSON.stringify(item.data ?? {}));
 
-            // ✅ Extract color and capacity with fallbacks for different key casings
+           
             const data = item.data ?? {};
 
-            const color = data['color']           // id 1,3,4,5
-                       ?? data['Color']           // id 9
-                       ?? data['generation']      // id 6
-                       ?? data['CPU model']       // id 7
-                       ?? data['Strap Colour']    // id 8
-                       ?? data['Capacity']        // id 10,11,12
+            const color = data['color']           
+                       ?? data['Color']           
+                       ?? data['generation']      
+                       ?? data['CPU model']      
+                       ?? data['Strap Colour']    
+                       ?? data['Capacity']       
                        ?? 'N/A';
 
-            const capacity = data['capacity']     // id 1
-                          ?? data['capacity GB']  // id 3
-                          ?? data['price']        // id 4,5,6,7
-                          ?? data['Case Size']    // id 8
-                          ?? data['Description']  // id 9
-                          ?? data['Screen size']  // id 10,11
-                          ?? data['Price']        // id 12
+            const capacity = data['capacity']     
+                          ?? data['capacity GB']  
+                          ?? data['price']       
+                          ?? data['Case Size']    
+                          ?? data['Description']  
+                          ?? data['Screen size']  
+                          ?? data['Price']        
                           ?? 'N/A';
 
             row.innerHTML = `
@@ -66,7 +66,7 @@ function editRow(btn) {
 
         updateItem(itemId, {
             name: updatedName,
-            data: JSON.parse(row.getAttribute('data-fields')) // send original data structure
+            data: JSON.parse(row.getAttribute('data-fields')) 
         });
 
     } else {
@@ -98,7 +98,7 @@ async function updateItem(id, updatedData) {
 }
 
 function deleteRow(btn) {
-    if (confirm('Are you sure you want to delete this row?')) {
+    if (confirm('Are you sure you want to delete this row permanently?')) {
         btn.closest('tr').remove();
         refreshSerialNumbers();
     }
