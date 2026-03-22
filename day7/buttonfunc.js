@@ -6,28 +6,33 @@ async function loadTableData() {
 
         items.forEach((item, index) => {
             const row = table.insertRow();
-            row.setAttribute('data-id', item.id);
-            row.setAttribute('data-fields', JSON.stringify(item.data ?? {}));
 
-           
             const data = item.data ?? {};
 
-            const color = data['color']           
-                       ?? data['Color']           
-                       ?? data['generation']      
-                       ?? data['CPU model']      
-                       ?? data['Strap Colour']    
-                       ?? data['Capacity']       
-                       ?? 'N/A';
+            const colorKey =
+                'color' in data ? 'color' :
+                'Color' in data ? 'Color' :
+                'generation' in data ? 'generation' :
+                'CPU model' in data ? 'CPU model' :
+                'Strap Colour' in data ? 'Strap Colour' :
+                'Capacity' in data ? 'Capacity' : null;
 
-            const capacity = data['capacity']     
-                          ?? data['capacity GB']  
-                          ?? data['price']       
-                          ?? data['Case Size']    
-                          ?? data['Description']  
-                          ?? data['Screen size']  
-                          ?? data['Price']        
-                          ?? 'N/A';
+            const capacityKey =
+                'capacity' in data ? 'capacity' :
+                'capacity GB' in data ? 'capacity GB' :
+                'price' in data ? 'price' :
+                'Case Size' in data ? 'Case Size' :
+                'Description' in data ? 'Description' :
+                'Screen size' in data ? 'Screen size' :
+                'Price' in data ? 'Price' : null;
+
+            const color = colorKey ? data[colorKey] : 'N/A';
+            const capacity = capacityKey ? data[capacityKey] : 'N/A';
+
+            row.dataset.id = item.id;
+            row.dataset.data = JSON.stringify(data);
+            row.dataset.colorKey = colorKey;
+            row.dataset.capacityKey = capacityKey;
 
             row.innerHTML = `
                 <td>${index + 1}</td>
@@ -46,17 +51,20 @@ async function loadTableData() {
     }
 }
 
+
 function editRow(btn) {
     const row = btn.closest('tr');
     const cells = row.querySelectorAll('td');
     const isEditing = btn.textContent === 'Save';
 
     if (isEditing) {
-        const itemId      = row.getAttribute('data-id');
-        const updatedName = cells[1].querySelector('input[name="name"]').value;
-        const updatedColor    = cells[2].querySelector('input').value;
+        const id = row.dataset.id;
+
+        const updatedName = cells[1].querySelector('input').value;
+        const updatedColor = cells[2].querySelector('input').value;
         const updatedCapacity = cells[3].querySelector('input').value;
 
+        // restore UI
         cells[1].textContent = updatedName;
         cells[2].textContent = updatedColor;
         cells[3].textContent = updatedCapacity;
@@ -64,13 +72,25 @@ function editRow(btn) {
         btn.textContent = 'Edit';
         btn.style.backgroundColor = '';
 
-        updateItem(itemId, {
+        // reconstruct data
+        let data = JSON.parse(row.dataset.data);
+
+        const colorKey = row.dataset.colorKey;
+        const capacityKey = row.dataset.capacityKey;
+
+        if (colorKey) data[colorKey] = updatedColor;
+        if (capacityKey) data[capacityKey] = updatedCapacity;
+
+        // persist updated structure locally
+        row.dataset.data = JSON.stringify(data);
+
+        updateItem(id, {
             name: updatedName,
-            data: JSON.parse(row.getAttribute('data-fields')) 
+            data: data
         });
 
     } else {
-        cells[1].innerHTML = `<input name="name" type="text" value="${cells[1].textContent}" />`;
+        cells[1].innerHTML = `<input type="text" value="${cells[1].textContent}" />`;
         cells[2].innerHTML = `<input type="text" value="${cells[2].textContent}" />`;
         cells[3].innerHTML = `<input type="text" value="${cells[3].textContent}" />`;
 
@@ -78,6 +98,7 @@ function editRow(btn) {
         btn.style.backgroundColor = 'green';
     }
 }
+
 
 async function updateItem(id, updatedData) {
     try {
@@ -89,25 +110,45 @@ async function updateItem(id, updatedData) {
 
         if (!res.ok) throw new Error(res.status);
 
-        console.log('✅ Updated');
+        const result = await res.json();
+        console.log('✅ Updated:', result);
+
     } catch (err) {
         console.error('❌ Update failed:', err);
     }
 }
 
-function deleteRow(btn) {
-    if (confirm('Are you sure you want to delete this row permanently?')) {
-        btn.closest('tr').remove();
-        refreshSerialNumbers();
+
+async function deleteRow(btn) {
+    const row = btn.closest('tr');
+    const id = row.dataset.id;
+
+    if (confirm('Delete permanently?')) {
+        try {
+            const res = await fetch(`https://api.restful-api.dev/objects/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (!res.ok) throw new Error(res.status);
+
+            row.remove();
+            refreshSerialNumbers();
+
+        } catch (err) {
+            console.error('❌ Delete failed:', err);
+        }
     }
 }
+
 
 function refreshSerialNumbers() {
     const table = document.getElementById('tabledesign');
     const rows = table.querySelectorAll('tr:not(:first-child)');
+
     rows.forEach((row, index) => {
         row.cells[0].textContent = index + 1;
     });
 }
+
 
 loadTableData();
