@@ -81,19 +81,17 @@ function editRow(btn) {
 
 async function updateItem(id, updatedData) {
     try {
-        const response = await fetch(`https://api.restful-api.dev/objects/${id}`, {
+        const res = await fetch(`https://api.restful-api.dev/objects/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedData)
         });
 
-        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+        if (!res.ok) throw new Error(res.status);
 
-        const result = await response.json();
-        console.log('✅ Update accepted:', result);
-
-    } catch (error) {
-        console.error('❌ Update failed:', error);
+        console.log('✅ Updated');
+    } catch (err) {
+        console.error('❌ Update failed:', err);
     }
 }
 
