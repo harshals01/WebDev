@@ -6,25 +6,20 @@
 <title>Sign In</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="loginpagedesign.css">
-
-    <script src="login-js.js"></script>
-
+<script src="login-js.2.js" defer></script>
 </head>
 <body>
 
-
-<!-- RIGHT PANEL -->
 <div class="right-panel">
-  
   <div class="form-card">
 
     <!-- Tabs -->
     <div class="tabs" role="tablist">
       <button class="tab-btn active" role="tab" onclick="switchTab('login', this)">Sign In</button>
-      <button class="tab-btn" role="tab" onclick="switchTab('signup', this)">Create Account</button>
+      <button class="tab-btn"        role="tab" onclick="switchTab('signup', this)">Create Account</button>
     </div>
 
-    <!-- LOGIN -->
+    <!-- ── LOGIN ── -->
     <div class="form-pane active" id="login">
       <h2 class="form-heading">Good to see<br>you again.</h2>
       <p class="form-subheading">Enter your credentials to continue.</p>
@@ -40,57 +35,106 @@
         <div class="password-wrapper">
           <input type="password" id="login-pw" placeholder="••••••••" autocomplete="current-password">
           <button class="toggle-pw" type="button" onclick="togglePw('login-pw', this)">Show</button>
-                  <small class="error" id="error-login-pw"></small>
         </div>
+        <small class="error" id="error-login-pw"></small>
       </div>
 
       <a href="#" class="forgot">Forgot password?</a>
 
-      <button class="submit-btn" type="button" onclick="handleLogin()">Sign In </button>
-
+      <button class="submit-btn" type="button" onclick="handleLogin()">Sign In</button>
     </div>
 
-    <!-- SIGNUP -->
+    <!-- ── SIGNUP STEP 1: Details ── -->
     <div class="form-pane" id="signup">
       <h2 class="form-heading">Begin your<br>story here.</h2>
       <p class="form-subheading">Create a free account in seconds.</p>
 
-      <div class="row-2">
-        <div class="field">
-          <label for="first-name">First Name</label>
-          <input type="text" id="first-name" placeholder="Jane" autocomplete="given-name" >
-          <small class="error" id="error-first-name"></small>
-        </div>
-        <div class="field">
-          <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" placeholder="Doe" autocomplete="family-name" >
-            <small class="error" id="error-last-name"></small>
-        </div>
+      <div class="field">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Jane Doe" autocomplete="name">
+        <small class="error" id="error-name"></small>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210" autocomplete="tel">
+        <small class="error" id="error-phone"></small>
       </div>
 
       <div class="field">
         <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email">
         <small class="error" id="error-signup-email"></small>
-        <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" >
       </div>
 
       <div class="field">
         <label for="signup-pw">Password</label>
         <div class="password-wrapper">
-          <input type="password" id="signup-pw" placeholder="At least 8 characters" autocomplete="new-password" >
+          <input type="password" id="signup-pw" placeholder="At least 8 characters" autocomplete="new-password">
           <button class="toggle-pw" type="button" onclick="togglePw('signup-pw', this)">Show</button>
-            <small class="error" id="error-signup-pw"></small>
         </div>
+        <small class="error" id="error-signup-pw"></small>
       </div>
 
-      <button class="submit-btn" type="button" style="margin-top: 0.5rem;" onclick="handleSignup()">Create Account</button>
+      <div class="flex items-center space-x-2 mb-7">
+        <input class="w-4 h-4 accent-[#FF0050] rounded" type="checkbox" id="accept-tc">
+        <span class="text-sm text-gray-600">
+          I agree with all 
+          <a class="logo-color hover:underline" href="/terms-of-services" data-discover="true">
+            Terms &amp; Conditions</a> 
+            &amp;
+             <a class="logo-color hover:underline" href="/privacy-policy" data-discover="true">Privacy Policy</a>
+        </span>
+      </div>
+      <small class="error" id="error-accept-tc" style="display:block; margin-top:-0.75rem; margin-bottom:0.75rem;"></small>
 
- 
+      <button class="submit-btn" type="button" style="margin-top: 0.5rem;" onclick="handleSignup()">Continue</button>
 
       <p class="terms">By creating an account you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
     </div>
 
+    
+    <div class="form-pane" id="otp-verify">
+      <h2 class="form-heading">Check your<br>inbox.</h2>
+      <p class="form-subheading">
+        We sent a 6-digit code to
+        <strong id="otp-email-label" style="color: var(--ink); font-weight: 500;"></strong>
+      </p>
+
+      <div class="field" style="margin-top: 0.5rem;">
+        <label>Verification Code</label>
+        <div class="otp-row" id="otp-row">
+          <input class="otp-input" maxlength="1" type="text" inputmode="numeric" autocomplete="one-time-code">
+          <input class="otp-input" maxlength="1" type="text" inputmode="numeric">
+          <input class="otp-input" maxlength="1" type="text" inputmode="numeric">
+          <input class="otp-input" maxlength="1" type="text" inputmode="numeric">
+          <input class="otp-input" maxlength="1" type="text" inputmode="numeric">
+          <input class="otp-input" maxlength="1" type="text" inputmode="numeric">
+        </div>
+        <small class="error" id="error-otp"></small>
+      </div>
+
+      <div class="resend-row">
+        Didn't receive it?
+        <span class="resend-link" id="resend-link" onclick="resendOtp()">Resend code</span>
+        <span id="resend-timer" style="display: none; color: var(--muted); font-size: 0.8rem;"></span>
+      </div>
+
+      <button class="submit-btn" type="button" style="margin-top: 1.25rem;" onclick="verifyOtpAndRegister()">
+        Verify &amp; Create Account
+      </button>
+
+      <button type="button"
+        onclick="switchTab('signup', document.querySelectorAll('.tab-btn')[1])"
+        style="width:100%; margin-top:0.75rem; background:none; border:none;
+               font-family:'DM Sans',sans-serif; font-size:0.85rem;
+               color:var(--muted); cursor:pointer; letter-spacing:0.03em;">
+        ← Back to details
+      </button>
+    </div>
+
   </div>
 </div>
+
 </body>
 </html>
