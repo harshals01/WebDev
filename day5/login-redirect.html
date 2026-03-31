@@ -1,24 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Welcome</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stores </title>
     <link rel="stylesheet" href="login-redirectpg.css">
 </head>
 
 <body>
-    <h1>Stores List</h1>
 
-    <input 
-        id="searchBox"
-        placeholder="Search stores..." 
-        class="search-bar" 
-        type="text"
-    >
+    <header class="top-bar">
+        <div class="brand">
+            <span class="brand-icon"></span> Stores
+        </div>
+        <div class="header-actions">
+            <div class="location-tag" id="locationTag">📍 No location set</div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
 
-    <button onclick="logout()">Logout</button>
+    <main class="main-content">
 
-    <div id="storeList"></div>
+        <!-- ── Location Panel ── -->
+        <div id="locationPanel" class="location-panel">
+            <div class="lp-left">
+                <div class="lp-title">
+                    <span class="lp-icon">📍</span>
+                    <span>Set Your Location</span>
+                </div>
+                <p class="lp-desc">Share your location or type coordinates.</p>
+            </div>
+
+            <div class="lp-right">
+                <button id="useGPSBtn" class="btn-gps">
+                    🛰 Use My Location
+                </button>
+
+                <div class="lp-divider">or</div>
+
+                <div class="lp-coords">
+                    <input type="number" id="manualLat" class="coord-input" placeholder="Latitude" step="any">
+                    <input type="number" id="manualLng" class="coord-input" placeholder="Longitude" step="any">
+                    <button id="confirmManualBtn" class="btn-confirm">Set</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Page Heading ── -->
+        <div class="page-title">
+            <h1 id="pageTitle">Stores List </h1>
+            <p id="storeCount" class="subtitle"></p>
+        </div>
+
+
+        <div class="filter-row">
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input id="searchBox" class="search-bar" type="text" placeholder="Search stores...">
+            </div>
+
+            <div class="filter-pills">
+                <button class="pill" id="pillNear" onclick="setMode('near')">Near Me</button>
+                <button class="pill active" id="pillAll" onclick="setMode('all')">All Stores</button>
+            </div>
+
+
+        </div>
+
+
+        <div id="storeList" class="store-grid"></div>
+
+    </main>
 
     <script src="login-redirectfnc.js"></script>
 </body>
+
 </html>
