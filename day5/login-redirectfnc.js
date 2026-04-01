@@ -62,7 +62,6 @@ let userLat = 26.4499;
 let userLng = 74.6399;
 let currentMode = 'all';
 
-// ── Haversine ──────────────────────────────────────────────────────────────
 function haversineDistance(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -79,7 +78,6 @@ function formatDistance(km) {
     return km < 1 ? `${Math.round(km * 1000)} m Away` : `${km.toFixed(2)} Km Away`;
 }
 
-// ── Status ─────────────────────────────────────────────────────────────────
 function getStoreStatus(store) {
     if (typeof store.is_open === 'boolean') return store.is_open;
     if (typeof store.isOpen  === 'boolean') return store.isOpen;
@@ -87,7 +85,6 @@ function getStoreStatus(store) {
     return null;
 }
 
-// ── Mode toggle ────────────────────────────────────────────────────────────
 function setMode(mode) {
     currentMode = mode;
     document.getElementById('pillNear').classList.toggle('active', mode === 'near');
@@ -97,7 +94,6 @@ function setMode(mode) {
     fetchStores();
 }
 
-// ── Share ──────────────────────────────────────────────────────────────────
 function shareStore(name) {
     if (navigator.share) {
         navigator.share({ title: name, text: `Check out ${name} on Saleofy!` });
@@ -108,14 +104,12 @@ function shareStore(name) {
     }
 }
 
-// ── Logout ─────────────────────────────────────────────────────────────────
 function logout() {
     if (confirm('Are you sure you want to logout?')) {
         window.location.href = 'login.html';
     }
 }
 
-// ── Update location tag + panel state ─────────────────────────────────────
 function applyLocation(lat, lng, label) {
     userLat = lat;
     userLng = lng;
@@ -124,7 +118,6 @@ function applyLocation(lat, lng, label) {
     fetchStores();
 }
 
-// ── DOM Ready ──────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     const useGPSBtn        = document.getElementById('useGPSBtn');
     const confirmManualBtn = document.getElementById('confirmManualBtn');
@@ -132,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const manualLng        = document.getElementById('manualLng');
     const searchBox        = document.getElementById('searchBox');
 
-    // GPS
     useGPSBtn.addEventListener('click', () => {
         useGPSBtn.textContent = '⏳ Locating...';
         useGPSBtn.disabled = true;
@@ -152,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     });
 
-    // Manual
     confirmManualBtn.addEventListener('click', () => {
         const lat = parseFloat(manualLat.value);
         const lng = parseFloat(manualLng.value);
@@ -163,16 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
         applyLocation(lat, lng, `${lat.toFixed(4)}, ${lng.toFixed(4)}`);
     });
 
-    // Search
     searchBox.addEventListener('input', function () {
         fetchStores(this.value.trim());
     });
 
-    // Load stores immediately with default coords on page open
     fetchStores();
 });
 
-// ── Fetch ──────────────────────────────────────────────────────────────────
 async function fetchStores(search = '') {
     const storeList  = document.getElementById('storeList');
     const storeCount = document.getElementById('storeCount');
@@ -210,7 +198,6 @@ async function fetchStores(search = '') {
     }
 }
 
-// ── Render ─────────────────────────────────────────────────────────────────
 function displayStores(stores) {
     const storeList  = document.getElementById('storeList');
     const storeCount = document.getElementById('storeCount');
@@ -234,7 +221,6 @@ function displayStores(stores) {
         const storeUrl = store.url || store.store_url || store.link ||
                          (store.slug ? `https://saleofy.com/store/${store.slug}` : null);
 
-        // Distance
         const sLat = parseFloat(store.latitude  || store.lat);
         const sLng = parseFloat(store.longitude || store.lng || store.lon);
         let distText = '';
@@ -242,7 +228,6 @@ function displayStores(stores) {
             distText = formatDistance(haversineDistance(userLat, userLng, sLat, sLng));
         }
 
-        // Status
         const isOpen = getStoreStatus(store);
         let statusClass, statusLabel;
         if (isOpen === true)       { statusClass = 'open';    statusLabel = 'Open Now'; }
@@ -251,7 +236,7 @@ function displayStores(stores) {
 
         const imgHTML = imgSrc
             ? `<img src="${imgSrc}" alt="${name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'>🏪</div>'">`
-            : `<div class="img-placeholder">🏪</div>`;
+            : `<div class="img-placeholder">img</div>`;
 
         const viewBtnHTML = storeUrl
             ? `<a href="${storeUrl}" target="_blank" class="view-store-btn">View Store →</a>`
