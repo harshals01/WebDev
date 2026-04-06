@@ -8,3 +8,5 @@ git commit -m 'message'
 git branch
 git diff
 
+github: hosts git repos, cloud based platform
+git: open source version control system, tracks changes in local code
