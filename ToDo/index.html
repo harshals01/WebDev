@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToDo WebApp</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="header">
+      <h1><em> Tasks </em></h1>
+      <p class="date-line" id="dateline">Thursday, April 10 2026</p>
+    </header>
+
+    <section class="stats-row">
+      <div class="stat">
+        <span class="stat-num" id="stat-total"> 3 </span>
+        <span class="stat-label">Total</span>
+      </div>
+
+      <div class="stat">
+        <span class="stat-num" id="stat-open"> 2 </span>
+        <span class="stat-label">Open</span>
+      </div>
+
+      <div class="stat">
+        <span class="stat-num" id="stat-done"> 1 </span>
+        <span class="stat-label">Done</span>
+      </div>
+    </section>
+
+    <div class="input-row">
+      <input type="text" class="task-input" id="task-input" placeholder="Add a new task…" maxlength="120" />      
+      <button class="add-btn" id="add-btn">+ Create</button>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-btn active" >All</button>
+      <button class="filter-btn" >Open</button>
+      <button class="filter-btn" >Done</button>
+    </div>
+
+    <main id="tasks-container">
+
+      <p class="section-label">Open</p>
+
+      <div class="task-item" id="task-1">
+        <div class="check-box" data-id="1" role="checkbox" tabindex="0"> ☑️ </div>
+        <span class="task-text">Task 1 </span>
+        <button class="del-btn" data-id="1" > X </button>
+      </div>
+
+      <div class="task-item" id="task-2">
+        <div class="check-box" data-id="2" role="checkbox" aria-checked="false" tabindex="0"></div>
+        <span class="task-text"> Task 2 </span>
+        <button class="del-btn" data-id="2" > X </button>
+      </div>
+
+      <p class="section-label">completed</p>
+
+      <div class="task-item done" id="task-3">
+        <div class="check-box checked" data-id="3" role="checkbox" tabindex="0"></div>
+        <span class="task-text">Task 3</span>
+        <button class="del-btn" data-id="3"> X </button>
+      </div>
+
+    </main>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-fill" style="width: 33%;"></div>
+    </div>
+
+    <button class="clear-btn" id="clear-done">Clear completed</button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

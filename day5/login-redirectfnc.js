@@ -213,8 +213,20 @@ function displayStores(stores) {
     storeCount.textContent = `${stores.length} store${stores.length !== 1 ? 's' : ''} found`;
 
     stores.forEach((store, i) => {
-        const name     = store.name || store.store_name || 'Unnamed Store';
-        const address  = store.address || store.location || store.full_address || 'Address not available';
+        const name = store.name || store.store_name || 'Unnamed Store';
+
+        const addressParts = [
+        store.street_address,
+        store.street_address2,
+        store.landmark,l,
+        store.area,
+        store.city,
+        store.state,
+        store.postal_code
+        ].filter(part => part && part.trim() !== '');
+        const address = addressParts.length
+    ? addressParts.join(', ')
+    : store.address || store.location || store.full_address || 'Address not available';
         const tagline  = store.description || store.tagline || `Welcome To ${name}, ...`;
         const offers   = store.active_offers ?? store.activeOffers ?? store.offers_count ?? 0;
         const imgSrc   = store.image || store.logo || store.cover_image || store.thumbnail || '';

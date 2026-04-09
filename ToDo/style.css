@@ -1,0 +1,109 @@
+body{
+
+    background-color:plum;    
+  /* background: linear-gradient(135deg, #667eea, #764ba2); */
+    background: linear-gradient(-45deg, #ff6a00, #ee0979, #00c6ff);
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+}
+
+
+
+.header{
+
+    color: black;
+    text-align: center;
+    
+}
+
+.input-row {
+
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.task-input {
+      flex: 1;
+      min-width: 0;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      color: var(--text);
+    }
+
+.stats-row {
+
+      font-family: 'Courier New', Courier, monospace;
+      font-size: large;
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+.add-btn {
+     
+      padding: 10px 18px;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      cursor: pointer;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+.section-label{
+
+    font-size:larger;
+    margin: 10px;
+}
+ 
+div.filter-row {
+    padding: 10px;
+    margin: 10px;    
+}
+
+
+.filter-btn {
+      border: 0.5px solid;
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+
+.task-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 0.5px solid black;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 6px;
+      transition: all 0.18s;
+}
+
+div.check-box {
+    color: black;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-hover);
+      border-radius: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      background: var(--bg);
+}
+
+
+
+
+ 
+    
+ 
