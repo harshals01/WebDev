@@ -14,4 +14,4 @@ const car1 = new Car("Toyota", "Corolla");
 const car2 = new Car("Honda", "Civic");
 
 car1.showDetails(); 
-car2.showDetails(); 
+car2.showDetails();
