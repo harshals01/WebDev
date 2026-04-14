@@ -6,7 +6,7 @@ class Car {
 
   
   showDetails() {
-    console.log(`This car is a ${this.brand} ${this.model}.`);
+    console.log(`i have a ${this.brand} ${this.model}.`);
   }
 }
 
