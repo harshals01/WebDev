@@ -1,21 +1,21 @@
-// class college{
-//     constructor(degree, branch){
+class college{
+    constructor(degree, branch){
 
-//     this.degree = degree;
-//     this.branch = branch;
-//     }
+    this.degree = degree;
+    this.branch = branch;
+    }
 
-//     showDetails(){
+    showDetails(){
 
-//         console.log(`I study in ${this.degree} ${this.branch}.`)
-//     }
-// }
+        console.log(`I study in ${this.degree} ${this.branch}.`)
+    }
+}
 
-//     const college1= new college("btech", "cse");
-//     const college2= new college("bba", "consulting");
+    const college1= new college("btech", "cse");
+    const college2= new college("bba", "consulting");
 
-//     college1.showDetails();
-//     college2.showDetails();
+    college1.showDetails();
+    college2.showDetails();
 
 
 class session{
